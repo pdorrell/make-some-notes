@@ -49,3 +49,4 @@ gem 'devise'
 
 gem 'thin', group: :development
 
+gem 'simple_form'
