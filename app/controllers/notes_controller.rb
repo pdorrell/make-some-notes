@@ -5,7 +5,7 @@ class NotesController < ApplicationController
   end
   
   def edit
-    @note = Note.find(params[:id])
+    @note = get_current_users_note(params[:id])
   end
   
   def index
@@ -13,7 +13,7 @@ class NotesController < ApplicationController
   end
   
   def show
-    @note = Note.find(params[:id])
+    @note = get_current_users_note(params[:id])
   end
   
   def create
@@ -30,7 +30,7 @@ class NotesController < ApplicationController
   
   def update
     update_params = note_params
-    @note = Note.find(params[:id])
+    @note = get_current_users_note(params[:id])
     @note.update(update_params)
     if @note.valid?
       flash[:notice] = "Note updated"
@@ -41,15 +41,24 @@ class NotesController < ApplicationController
   end
   
   def destroy
-    @note = Note.find(params[:id])
+    @note = get_current_users_note(params[:id])
     if @note.destroy
       flash[:notice] = "Note #{@note.title.inspect} was deleted";
       redirect_to root_path
     end
   end
-    
+  
+  private
   
   def note_params
     params.require(:note).permit(:title, :text)
+  end
+  
+  def get_current_users_note(id)
+    if !current_user
+      raise ActiveRecord::RecordNotFound
+    else
+      current_user.notes.find(id)
+    end
   end
 end
