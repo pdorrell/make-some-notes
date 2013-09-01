@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @notes = Note.all
+    @notes = current_user ? current_user.notes : nil
   end
 end

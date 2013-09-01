@@ -5,11 +5,7 @@ class NotesController < ApplicationController
   end
   
   def index
-    if current_user
-      @notes = Note.all
-    else
-      @notes = Note.all
-    end
+    @notes = current_user ? current_user.notes : nil
   end
   
   def show
@@ -18,13 +14,13 @@ class NotesController < ApplicationController
   
   def create
     creation_params = note_params
-    puts "creation_params = #{creation_params.inspect}"
     creation_params[:user_id] = current_user.id
-    note = Note.create(creation_params)
-    if note
+    @note = Note.create(creation_params)
+    if @note.valid?
       flash[:notice] = "New note created"
       redirect_to note
     else
+      flash[:error] = "Note not valid"
       render "new"
     end
   end
