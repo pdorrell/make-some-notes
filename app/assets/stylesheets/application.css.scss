@@ -15,6 +15,18 @@
 .note {
     border: solid 1px gray;
     padding: 0 0.5em;
+    margin: 1em 0;
+    h3 {
+	margin: 0;
+	padding: 0;
+    }
+    .text {
+	border: solid 1px blue;
+	background-color: #f4f4ff;
+	padding: 0.5em;
+	margin: 0 0 0.5em 0;
+	display: inline-block;
+    }
 }
 
 .user-id {

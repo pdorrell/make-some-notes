@@ -18,7 +18,7 @@ class NotesController < ApplicationController
     @note = Note.create(creation_params)
     if @note.valid?
       flash[:notice] = "New note created"
-      redirect_to note
+      redirect_to @note
     else
       flash[:error] = "Note not valid"
       render "new"
