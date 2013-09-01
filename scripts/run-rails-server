@@ -1,0 +1,12 @@
+#!/bin/bash
+cd $2
+if [ -f tmp/pids/server.pid ] 
+then
+  PID=`cat tmp/pids/server.pid`
+  if ps -p $PID > /dev/null
+  then
+    echo "Killing previous Rails process $PID ..."
+    kill $PID
+  fi
+fi
+$1 -S rails server --binding=127.0.0.1 --port=3000
