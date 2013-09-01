@@ -1,0 +1,7 @@
+<h2>Notes</h2>
+
+<p><%= link_to "Create a note", new_note_path %></p>
+
+<%if user_signed_in?%>
+  <%= render "note_links" %>
+<%end%>

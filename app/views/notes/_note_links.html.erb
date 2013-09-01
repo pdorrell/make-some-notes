@@ -1,0 +1,5 @@
+<ul>
+<%for note in @notes%>
+  <li><%= link_to "#{note.id}. #{note.title}", note %></li>
+<%end%>
+</ul>
