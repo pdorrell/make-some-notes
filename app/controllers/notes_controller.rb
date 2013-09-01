@@ -8,10 +8,6 @@ class NotesController < ApplicationController
     @note = get_current_users_note(params[:id])
   end
   
-  def index
-    @notes = current_user ? current_user.notes : nil
-  end
-  
   def show
     @note = get_current_users_note(params[:id])
   end
