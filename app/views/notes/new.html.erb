@@ -2,7 +2,8 @@
 <p>Create a new note</p>
 
 <%= simple_form_for @note, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
-  <%= f.input :title %>
+  <%= f.input :title, autofocus: true %>
   <%= f.input :text, as: :text %>
   <%= f.button :submit %>
+  or <%= link_to "Cancel", root_path %>
 <% end %>

@@ -4,6 +4,10 @@ class NotesController < ApplicationController
     @note.user = current_user
   end
   
+  def edit
+    @note = Note.find(params[:id])
+  end
+  
   def index
     @notes = current_user ? current_user.notes : nil
   end
@@ -20,8 +24,19 @@ class NotesController < ApplicationController
       flash[:notice] = "New note created"
       redirect_to @note
     else
-      flash[:error] = "Note not valid"
       render "new"
+    end
+  end
+  
+  def update
+    update_params = note_params
+    @note = Note.find(params[:id])
+    @note.update(update_params)
+    if @note.valid?
+      flash[:notice] = "Note updated"
+      redirect_to @note
+    else
+      render "edit"
     end
   end
   
