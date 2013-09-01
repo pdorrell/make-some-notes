@@ -15,6 +15,9 @@
           <%= render 'layouts/navigation' %>
         </div>
       </nav>
+      <% if user_signed_in? %>
+          <div class="logged-in pull-right">Logged in as <span class="user-id"><%=current_user.email%></span></div>
+      <% end %>
     </header>
     <main role="main">
       <div class="container">
