@@ -1,0 +1,10 @@
+
+<p>Create a new note</p>
+
+<%= form_for @note, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
+  <%= f.label(:title, "Title:") %>
+  <%= f.text_field :title %>
+  <%= f.label(:text, "Text:") %>
+  <%= f.text_area :text, size: "60x12" %>
+  <%= f.submit("Save") %>
+<% end %>
