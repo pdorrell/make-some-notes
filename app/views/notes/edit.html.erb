@@ -1,9 +1,4 @@
 
 <h2>Edit note <%=@note.id%> </h2>
 
-<%= simple_form_for @note, url: {action: "update"} do |f| %>
-  <%= f.input :title %>
-  <%= f.input :text, as: :text, autofocus: true %>
-  <%= f.button :submit %>
-  or <%= link_to "Cancel", @note %>
-<% end %>
+<%= render 'form' %>
