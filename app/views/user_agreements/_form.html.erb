@@ -1,13 +1,13 @@
+<h3>Version <%=@user_agreement.version%></h3>
 <%= simple_form_for(@user_agreement) do |f| %>
   <%= f.error_notification %>
 
   <div class="inputs">
-    <%= f.label :version %>
     <%= f.input :comment %>
     <%= f.input :text, as: :text %>
   </div>
 
   <div class="actions">
-    <%= f.button :submit %> or <%= link_to 'Cancel', @user_agreement %>
+    <%= f.button :submit, value: "Save" %> or <%= link_to 'Cancel', @user_agreement %>
   </div>
 <% end %>

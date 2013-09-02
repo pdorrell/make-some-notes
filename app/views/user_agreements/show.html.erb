@@ -12,12 +12,12 @@
 
 <p>
   <strong>Published at:</strong>
-  <%= @user_agreement.published_at %>
+  <%= @user_agreement.published_at.presence || '(not published)' %>
 </p>
 
 <p>
   <strong>Superceded at:</strong>
-  <%= @user_agreement.superceded_at %>
+  <%= @user_agreement.superceded_at.presence  || '(not superceded)' %>
 </p>
 
 <% if @user_agreement.can_publish? %>
