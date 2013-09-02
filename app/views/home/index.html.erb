@@ -3,7 +3,7 @@
 
 <%if user_signed_in?%>
 
-  <%if current_user.is_admin? %>
+  <%if can? :manage, UserAgreement %>
     <p><%= link_to "Administer Terms and Conditions ...", user_agreements_path %></p>
   <%end%>
 

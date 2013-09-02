@@ -1,6 +1,9 @@
 class UserAgreementsController < ApplicationController
   before_action :set_user_agreement, only: [:show, :edit, :update, :publish]
-
+  
+  before_action :authorise_update, except: [:index, :show]
+  before_action :authorise_read, only: [:index, :show]
+  
   # GET /user_agreements
   # GET /user_agreements.json
   def index
@@ -13,11 +16,6 @@ class UserAgreementsController < ApplicationController
   # GET /user_agreements/1
   # GET /user_agreements/1.json
   def show
-  end
-
-  # GET /user_agreements/new
-  def new
-    @user_agreement = UserAgreement.new
   end
 
   # GET /user_agreements/1/edit
@@ -53,13 +51,21 @@ class UserAgreementsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user_agreement
-      @user_agreement = UserAgreement.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_agreement_params
-      params.require(:user_agreement).permit(:comment, :text)
-    end
+  
+  def authorise_read
+    authorize! :read, UserAgreement
+  end
+  
+  def authorise_update
+    authorize! :update, UserAgreement
+  end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user_agreement
+    @user_agreement = UserAgreement.find(params[:id])
+  end
+  
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_agreement_params
+    params.require(:user_agreement).permit(:comment, :text)
+  end
 end
