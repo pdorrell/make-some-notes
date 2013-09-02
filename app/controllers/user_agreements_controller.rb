@@ -23,18 +23,9 @@ class UserAgreementsController < ApplicationController
 
   # POST /user_agreements
   # POST /user_agreements.json
-  def create
-    @user_agreement = UserAgreement.new(user_agreement_params)
-
-    respond_to do |format|
-      if @user_agreement.save
-        format.html { redirect_to @user_agreement, notice: 'User agreement was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @user_agreement }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @user_agreement.errors, status: :unprocessable_entity }
-      end
-    end
+  def edit_new_version
+    @user_agreement = UserAgreement.create_new_version()
+    render "edit"
   end
 
   # PATCH/PUT /user_agreements/1
@@ -48,16 +39,6 @@ class UserAgreementsController < ApplicationController
         format.html { render action: 'edit' }
         format.json { render json: @user_agreement.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /user_agreements/1
-  # DELETE /user_agreements/1.json
-  def destroy
-    @user_agreement.destroy
-    respond_to do |format|
-      format.html { redirect_to user_agreements_url }
-      format.json { head :no_content }
     end
   end
 
