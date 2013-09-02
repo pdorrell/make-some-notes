@@ -15,5 +15,12 @@
   <%= @user_agreement.published_at %>
 </p>
 
+<p>
+  <strong>Superceded at:</strong>
+  <%= @user_agreement.superceded_at %>
+</p>
+
+<% if @user_agreement.can_publish? %>
 <%= link_to 'Edit', edit_user_agreement_path(@user_agreement) %> |
+<% end %>
 <%= link_to 'Back', user_agreements_path %>

@@ -6,7 +6,8 @@
       <th>ID</th>
       <th>Comment</th>
       <th>Created at</th>
-      <th>Published at</th>
+      <th>Published</th>
+      <th>Superceded</th>
       <th></th>
       <th></th>
       <th></th>
@@ -20,6 +21,7 @@
         <td><%= user_agreement.comment %></td>
         <td><%= user_agreement.created_at %></td>
         <td><%= user_agreement.published_at %></td>
+        <td><%= user_agreement.superceded_at %></td>
         <td><%= link_to 'Show', user_agreement %></td>
         <td><%= link_to 'Edit', edit_user_agreement_path(user_agreement) %></td>
         <td><%= link_to 'Destroy', user_agreement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
