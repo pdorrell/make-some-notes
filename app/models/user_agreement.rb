@@ -68,4 +68,9 @@ class UserAgreement < ActiveRecord::Base
     UserAgreement.find(user_agreement.id)
   end
   
+  def self.get_current
+    versioned_document = VersionedDocument.get_versioned_document
+    versioned_document.published_version
+  end
+  
 end

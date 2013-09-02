@@ -49,7 +49,7 @@ class UserAgreementsController < ApplicationController
     flash[:notice] = "Published #{@user_agreement.id}"
     redirect_to @user_agreement
   end
-
+  
   private
   
   def authorise_read

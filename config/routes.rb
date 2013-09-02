@@ -15,6 +15,9 @@ TermsAndConditions::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root :to => "home#index"
   
+  get 'terms' => 'home#read_terms'
+  post 'accept_terms_and_conditions' => 'home#accept_terms_and_conditions'
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

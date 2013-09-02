@@ -1,0 +1,24 @@
+
+<h1>Terms and Conditions</h1>
+
+
+<%if @acceptance_required%>
+<p>Please read the following Terms and Conditions and
+indicate you acceptance of them by clicking on the "Accept" button at the bottom of the page.</p>
+<%end%>
+
+<%if @latest_user_agreement%>
+  <p>Version <strong><%=@latest_user_agreement.version%></strong></p>
+
+  <pre><%=@latest_user_agreement.text%></pre>
+
+  <%if @acceptance_required%>
+    <%= simple_form_for(@latest_user_agreement, url: url_for(controller: :home, action: :accept_terms_and_conditions),
+                        method: :post) do |f| %>
+      <%= f.hidden_field :version, value: @latest_user_agreement.version %>
+      <%= f.submit value: "I accept these terms and conditions" %>
+    <%end%>
+  <%end%>
+<%else%>
+  <i>(Currently there are no terms and conditions on this website.)</i>
+<%end%>

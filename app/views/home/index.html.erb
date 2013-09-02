@@ -7,7 +7,27 @@
     <p><%= link_to "Administer Terms and Conditions ...", user_agreements_path %></p>
   <%end%>
 
-  <p><%= link_to "Create a new note ...", new_note_path %></p>
+  <%if @acceptance_required%>
+  <div class="new-terms-notice">
+    <%if current_user.accepted_terms_version==nil%>
+      <p>Before you can create or edit notes you must accept the Terms and Conditions.</p>
+      <p><%= link_to "Read and accept the Terms and Conditions ...", action: :read_terms%></p>
+    <%else%>
+      <p>There is a new set of Terms and Conditions which you must accept before you can
+      create or edit notes.</p>
+      <p><%= link_to "Read and accept new Terms and Conditions ...", action: :read_terms%></p>
+    <%end%>
+  </div>
+
+  <%else%>
+    <p><%= link_to "Create a new note ...", new_note_path %></p>
+  <%end%>
 
   <%=render "notes/note_links"%>
+
 <%end%>
+
+<%if !@acceptance_required%>
+  <p><%= link_to "Terms and conditions", action: :read_terms%></p>
+<%end%>
+
