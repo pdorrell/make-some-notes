@@ -19,10 +19,18 @@ test:
   timeout: 5000
 
 staging:
-  adapter: sqlite3
-  database: db/staging.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  database: attention_development
   pool: 5
-  timeout: 5000
+  username: <%= ENV['NOTES4U_POSTGRES_USER'] %>
+  password: <%= ENV['NOTES4U_POSTGRES_PASSWORD'] %>
+
+  # Connect on a TCP socket. Omitted by default since the client uses a
+  # domain socket that doesn't need configuration. Windows does not have
+  # domain sockets, so uncomment these lines.
+  host: localhost
+  port: 5432
 
 production:
   adapter: sqlite3
