@@ -21,7 +21,7 @@ test:
 staging:
   adapter: postgresql
   encoding: unicode
-  database: attention_development
+  database: notes4u_staging
   pool: 5
   username: <%= ENV['NOTES4U_POSTGRES_USER'] %>
   password: <%= ENV['NOTES4U_POSTGRES_PASSWORD'] %>
