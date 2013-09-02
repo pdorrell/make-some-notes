@@ -44,7 +44,7 @@ class UserAgreement < ActiveRecord::Base
   def self.create_new_version
     versioned_document = VersionedDocument.get_versioned_document
     if versioned_document.new_version != nil
-      raise Exception("Cannot create new version: one already exists")
+      raise Exception.new("Cannot create new version: one already exists")
     end
     if versioned_document.published_version == nil
       previous_version = nil
