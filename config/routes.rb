@@ -1,4 +1,6 @@
 TermsAndConditions::Application.routes.draw do
+  resources :user_agreements
+
   resources :notes
 
   devise_for :users
