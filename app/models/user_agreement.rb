@@ -9,6 +9,33 @@ class UserAgreement < ActiveRecord::Base
     !published_at
   end
   
+  def publish
+    if published_at
+      raise Exception.new("Cannot publish User Agreement that is already published");
+    end
+    published_datetime = Time.now
+    transaction do
+      versioned_document = VersionedDocument.get_versioned_document
+      previous_agreement = versioned_document.published_version
+      
+      puts "published_datetime = #{published_datetime.inspect}"
+      
+      if previous_agreement
+        previous_agreement.superceded_at = published_datetime
+        previous_agreement.save
+        puts "Saved previous_agreement"
+      end
+      self.published_at = published_datetime
+      puts "Saving self = #{self.inspect}"
+      save
+      versioned_document.published_version = self
+      versioned_document.new_version = nil
+      puts "Saving versioned_document = #{versioned_document.inspect}"
+      versioned_document.save
+      puts "All saved."
+    end
+  end
+  
   def self.new_version_exists?
     versioned_document = VersionedDocument.get_versioned_document
     versioned_document && versioned_document.new_version != nil
@@ -28,9 +55,9 @@ class UserAgreement < ActiveRecord::Base
     end
     user_agreement = UserAgreement.new(version: new_version_number)
     if previous_version
-      user_agreement.comment = "[New version, copied from version " + previous_version.version + "] " + 
+      user_agreement.comment = "[New version, copied from version #{previous_version.version}] " + 
         previous_version.comment
-      user_agreement.text = previous_version.comment
+      user_agreement.text = previous_version.text
     else
       user_agreement.comment = "[First version]"
       user_agreement.text = "(Put agreement text here.)"

@@ -4,6 +4,9 @@ class UserAgreementsController < ApplicationController
   # GET /user_agreements
   # GET /user_agreements.json
   def index
+    @versioned_document = VersionedDocument.get_versioned_document
+    @published_version = @versioned_document.published_version
+    @new_version = @versioned_document.new_version
     @user_agreements = UserAgreement.all
   end
 
@@ -44,7 +47,8 @@ class UserAgreementsController < ApplicationController
   
   def publish
     puts "Publish user agreement #{@user_agreement.inspect}"
-    flash[:notice] = "Pretended to publish #{@user_agreement.id}"
+    @user_agreement.publish
+    flash[:notice] = "Published #{@user_agreement.id}"
     redirect_to @user_agreement
   end
 

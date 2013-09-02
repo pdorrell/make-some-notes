@@ -1,5 +1,8 @@
 <h1>Terms and Conditions</h1>
 
+<p><strong>Published version:</strong><%=@published_version.try(:version)%></p>
+<p><strong>New version:</strong><%=@new_version.try(:version)%></p>
+
 <table>
   <thead>
     <tr>
@@ -8,7 +11,6 @@
       <th>Created at</th>
       <th>Published</th>
       <th>Superceded</th>
-      <th></th>
       <th></th>
       <th></th>
     </tr>
