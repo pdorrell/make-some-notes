@@ -3,8 +3,10 @@
 
 <%= render "note" %>
 
-<p><%= link_to 'Edit this note ...', edit_note_path %></p>
+<% if can? :manage, Note %>
+  <p><%= link_to 'Edit this note ...', edit_note_path %></p>
 
-<%= button_to "Delete this note", @note, confirm: "Really delete this note?", method: :delete %>
+  <%= button_to "Delete this note", @note, confirm: "Really delete this note?", method: :delete %>
+<% end %>
 
 <p><%= link_to "All notes", root_path %></p>
