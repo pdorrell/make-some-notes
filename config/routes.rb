@@ -5,6 +5,7 @@ TermsAndConditions::Application.routes.draw do
   resources :notes
 
   post 'user_agreements/edit_new_version' => 'user_agreements#edit_new_version'
+  post 'user_agreements/:id/publish' => 'user_agreements#publish'
   
   devise_for :users
   get "home/index"

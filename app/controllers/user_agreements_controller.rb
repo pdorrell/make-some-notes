@@ -1,5 +1,5 @@
 class UserAgreementsController < ApplicationController
-  before_action :set_user_agreement, only: [:show, :edit, :update]
+  before_action :set_user_agreement, only: [:show, :edit, :update, :publish]
 
   # GET /user_agreements
   # GET /user_agreements.json
@@ -40,6 +40,12 @@ class UserAgreementsController < ApplicationController
         format.json { render json: @user_agreement.errors, status: :unprocessable_entity }
       end
     end
+  end
+  
+  def publish
+    puts "Publish user agreement #{@user_agreement.inspect}"
+    flash[:notice] = "Pretended to publish #{@user_agreement.id}"
+    redirect_to @user_agreement
   end
 
   private

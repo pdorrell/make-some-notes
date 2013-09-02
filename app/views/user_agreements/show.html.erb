@@ -21,12 +21,15 @@
 </p>
 
 <% if @user_agreement.can_publish? %>
-<%= link_to 'Edit', edit_user_agreement_path(@user_agreement) %> |
+  <%= link_to 'Edit', edit_user_agreement_path(@user_agreement) %>
+  <%= simple_form_for(@user_agreement, url: url_for(action: "publish"), method: :post) do |f| %>
+    <%= f.button :submit, value: "Publish"%>
+  <% end %>
 <% end %>
-<%= link_to 'Back', user_agreements_path %>
 
 <p>
   <strong>Text:</strong>
   <pre><%= @user_agreement.text %></pre>
 </p>
 
+<%= link_to 'All versions of Terms & Conditions', user_agreements_path %>
