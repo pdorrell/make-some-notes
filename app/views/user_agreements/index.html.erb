@@ -1,9 +1,11 @@
-<h1>Listing user_agreements</h1>
+<h1>Terms and Conditions</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Text</th>
+      <th>ID</th>
+      <th>Comment</th>
+      <th>Created at</th>
       <th>Published at</th>
       <th></th>
       <th></th>
@@ -14,7 +16,9 @@
   <tbody>
     <% @user_agreements.each do |user_agreement| %>
       <tr>
-        <td><%= user_agreement.text %></td>
+        <td><%= user_agreement.id %></td>
+        <td><%= user_agreement.comment %></td>
+        <td><%= user_agreement.created_at %></td>
         <td><%= user_agreement.published_at %></td>
         <td><%= link_to 'Show', user_agreement %></td>
         <td><%= link_to 'Edit', edit_user_agreement_path(user_agreement) %></td>

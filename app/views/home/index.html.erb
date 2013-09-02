@@ -4,7 +4,7 @@
 <%if user_signed_in?%>
 
   <%if current_user.is_admin? %>
-    <p>Administer terms and conditions ...</p>
+    <p><%= link_to "Administer Terms and Conditions ...", user_agreements_path %></p>
   <%end%>
 
   <p><%= link_to "Create a new note ...", new_note_path %></p>

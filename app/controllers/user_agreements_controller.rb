@@ -69,6 +69,6 @@ class UserAgreementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_agreement_params
-      params.require(:user_agreement).permit(:text, :published_at)
+      params.require(:user_agreement).permit(:comment, :text)
     end
 end
