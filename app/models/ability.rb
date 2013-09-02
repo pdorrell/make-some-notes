@@ -7,8 +7,9 @@ class Ability
         can :manage, :all
       end
       can :read, Note
-      can :edit
-      can :manage, Note
+      if user.has_accepted_latest_terms?
+        can :manage, Note
+      end
       can :accept, UserAgreement
     end
   end
