@@ -1,6 +1,6 @@
 class VersionedDocument < ActiveRecord::Base
-  has_one :published_version, class_name: UserAgreement
-  has_one :new_version, class_name: UserAgreement
+  belongs_to :published_version, class_name: UserAgreement
+  belongs_to :new_version, class_name: UserAgreement
   
   def self.get_versioned_document
     versioned_document = VersionedDocument.all.first

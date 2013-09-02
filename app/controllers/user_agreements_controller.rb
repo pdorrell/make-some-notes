@@ -1,5 +1,5 @@
 class UserAgreementsController < ApplicationController
-  before_action :set_user_agreement, only: [:show, :edit, :update, :destroy]
+  before_action :set_user_agreement, only: [:show, :edit, :update]
 
   # GET /user_agreements
   # GET /user_agreements.json

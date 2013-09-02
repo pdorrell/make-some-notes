@@ -1,8 +1,11 @@
 TermsAndConditions::Application.routes.draw do
+  
   resources :user_agreements
 
   resources :notes
 
+  post 'user_agreements/edit_new_version' => 'user_agreements#edit_new_version'
+  
   devise_for :users
   get "home/index"
   # The priority is based upon order of creation: first created -> highest priority.

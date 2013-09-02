@@ -32,7 +32,5 @@
 <br>
 
 <% if !new_user_agreement_version_exists? %>
-<form action="/user_agreements/edit_new_version">
-  <input type="Submit" value="Edit new version"/>
-</form>
+  <%= button_to "Edit new version", :action => "edit_new_version" %>
 <% end %>

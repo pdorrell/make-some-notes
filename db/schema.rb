@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130902014606) do
+ActiveRecord::Schema.define(version: 20130902022157) do
 
   create_table "notes", force: true do |t|
     t.integer  "user_id"
@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(version: 20130902014606) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
   create_table "versioned_documents", force: true do |t|
-    t.integer  "published_version"
-    t.integer  "new_version"
+    t.integer  "published_version_id"
+    t.integer  "new_version_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

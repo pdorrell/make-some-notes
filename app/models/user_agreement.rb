@@ -16,15 +16,15 @@ class UserAgreement < ActiveRecord::Base
   
   def self.create_new_version
     versioned_document = VersionedDocument.get_versioned_document
-    if versioned_document.new != nil
+    if versioned_document.new_version != nil
       raise Exception("Cannot create new version: one already exists")
     end
-    if versioned_document.published == nil
-      new_version_number = 1
+    if versioned_document.published_version == nil
       previous_version = nil
+      new_version_number = 1
     else
-      new_version_number = versioned_document.published + 1
-      previous_version = UserAgreement.find(version: versioned_document.published)
+      previous_version = versioned_document.published_version
+      new_version_number = previous_version.version+1
     end
     user_agreement = UserAgreement.new(version: new_version_number)
     if previous_version
@@ -36,7 +36,9 @@ class UserAgreement < ActiveRecord::Base
       user_agreement.text = "(Put agreement text here.)"
     end
     user_agreement.save
-    UserAgreement.find(user_agreement.save.id)
+    versioned_document.new_version = user_agreement
+    versioned_document.save
+    UserAgreement.find(user_agreement.id)
   end
   
 end
