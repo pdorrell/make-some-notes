@@ -6,6 +6,9 @@ class Ability
       if user.is_admin?
         can :manage, :all
       end
+      can :read, Note
+      can :edit
+      can :manage, Note
     end
     # Define abilities for the passed in user here. For example:
     #

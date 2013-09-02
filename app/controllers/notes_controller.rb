@@ -1,4 +1,8 @@
 class NotesController < ApplicationController
+  
+  before_action :authorise_update, except: [:show]
+  before_action :authorise_read, only: [:show]
+
   def new
     @note = Note.new
     @note.user = current_user
@@ -46,6 +50,14 @@ class NotesController < ApplicationController
   
   private
   
+  def authorise_read
+    authorize! :read, Note
+  end
+  
+  def authorise_update
+    authorize! :update, Note
+  end
+
   def note_params
     params.require(:note).permit(:title, :text)
   end
