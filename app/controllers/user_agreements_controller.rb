@@ -4,6 +4,9 @@ class UserAgreementsController < ApplicationController
   before_action :authorise_update, except: [:index, :show]
   before_action :authorise_read, only: [:index, :show]
   
+  # Note: this page includes JSON methods created by scaffolding, but any JSON
+  # functionality has not been tested at all.
+  
   # GET /user_agreements
   # GET /user_agreements.json
   def index
@@ -42,7 +45,8 @@ class UserAgreementsController < ApplicationController
       end
     end
   end
-  
+
+  # Action to publish a user agreement.
   def publish
     puts "Publish user agreement #{@user_agreement.inspect}"
     @user_agreement.publish
@@ -52,14 +56,18 @@ class UserAgreementsController < ApplicationController
   
   private
   
+  # Check CanCan authorisation to read a user agreement
   def authorise_read
     authorize! :read, UserAgreement
   end
   
+  # Check CanCan authorisation to update a user agreement
   def authorise_update
     authorize! :update, UserAgreement
   end
-  # Use callbacks to share common setup or constraints between actions.
+  
+  # For those actions that act on a particular user agreement, 
+  # set the user agreement as specified by the "id" parameter.
   def set_user_agreement
     @user_agreement = UserAgreement.find(params[:id])
   end
