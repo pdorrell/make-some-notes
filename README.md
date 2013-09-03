@@ -45,5 +45,38 @@ The rules for accepting terms and conditions are as follows:
 At any time, if a user has accepted the latest version of the Terms and Conditions which they are
 required to accept, the user can still read those Terms and Conditions via the home page. (Actually,
 currently this is a link to the latest *published* Terms and Conditions, which may be more recent
-than the Terms and Conditions which the user may have accepted -- this is a bug.)
+than the last version of the Terms and Conditions which the user has accepted -- this is a bug.)
+
+Technologies Used in This Application
+=====================================
+
+* Ruby on Rails 4.0.0
+* Ruby 1.9.3
+* Devise
+* CanCan
+* SimpleForm
+* Bootstrap-SASS
+
+Database Tables
+===============
+
+There are currently 4 application-specific tables in the application database:
+
+* **users**, this contains user information, as created by Devise. 3 additional columns
+  are **is_admin**, **latest_terms_version**, **accepted_terms_version**.
+* **notes**, which contains the notes. It has data columns **title** and **text**.
+  Each note belongs to a user, and users can only see those notes which they created.
+* **user_agreements**, which contains all the versions of the Terms and Conditions.
+  I used the term "User Agreement", because "Terms and Conditions" is pluralised even when
+  there is only one of them, which is liable to cause problems when Rails starts pluralizing
+  and singularizing names of things. Each "User Agreement" has data columns **text** for 
+  the main text of the agreeemnt, and **comment** for a descriptive comment. Two important
+  date columns are **published_at**, which is filled in when a new version is published, 
+  and **superceded_at**, which is filled in when a currently published version is replaced
+  by publishing a new version.
+* **versioned_documents** contains one row identifying which versions (if any) of the Terms
+  and Conditions are published and new. (If there were different types of document to be versioned,
+  there might be one row for each such document type, but currently that is just a hypothetical
+  possibility.)
+
 
