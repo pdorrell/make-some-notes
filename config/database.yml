@@ -21,10 +21,10 @@ test:
 staging:
   adapter: postgresql
   encoding: unicode
-  database: notes4u_staging
+  database: makesomenotes_staging
   pool: 5
-  username: <%= ENV['NOTES4U_STAGING_POSTGRES_USER'] %>
-  password: <%= ENV['NOTES4U_STAGING_POSTGRES_PASSWORD'] %>
+  username: <%= ENV['MAKESOMENOTES_STAGING_POSTGRES_USER'] %>
+  password: <%= ENV['MAKESOMENOTES_STAGING_POSTGRES_PASSWORD'] %>
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -35,10 +35,10 @@ staging:
 production:
   adapter: postgresql
   encoding: unicode
-  database: <%= ENV['NOTES4U_PRODUCTION_POSTGRES_DATABASE'] %>
+  database: <%= ENV['MAKESOMENOTES_PRODUCTION_POSTGRES_DATABASE'] %>
   pool: 5
-  username: <%= ENV['NOTES4U_PRODUCTION_POSTGRES_USER'] %>
-  password: <%= ENV['NOTES4U_PRODUCTION_POSTGRES_PASSWORD'] %>
-  host: <%= ENV['NOTES4U_PRODUCTION_POSTGRES_HOST'] %>
-  port: <%= ENV['NOTES4U_PRODUCTION_POSTGRES_PORT'] %>
+  username: <%= ENV['MAKESOMENOTES_PRODUCTION_POSTGRES_USER'] %>
+  password: <%= ENV['MAKESOMENOTES_PRODUCTION_POSTGRES_PASSWORD'] %>
+  host: <%= ENV['MAKESOMENOTES_PRODUCTION_POSTGRES_HOST'] %>
+  port: <%= ENV['MAKESOMENOTES_PRODUCTION_POSTGRES_PORT'] %>
 
