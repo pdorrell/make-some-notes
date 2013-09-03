@@ -20,8 +20,10 @@
   <%= @user_agreement.superceded_at.presence  || '(not superceded)' %>
 </p>
 
+<% if @user_agreement.can_edit? %>
+  <p><%= link_to 'Edit', edit_user_agreement_path(@user_agreement) %></p>
+<% end %>
 <% if @user_agreement.can_publish? %>
-  <%= link_to 'Edit', edit_user_agreement_path(@user_agreement) %>
   <%= simple_form_for(@user_agreement, url: url_for(action: "publish"), method: :post) do |f| %>
     <%= f.button :submit, value: "Publish"%>
   <% end %>
