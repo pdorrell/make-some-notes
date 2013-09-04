@@ -54,3 +54,5 @@ gem 'thin', group: :development
 gem 'simple_form'
 gem 'cancan'
 gem 'pg'
+
+gem 'newrelic_rpm'
